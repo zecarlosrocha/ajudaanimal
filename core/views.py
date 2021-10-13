@@ -7,10 +7,10 @@ from .models import Entidade
 
 
 class IndexView(ListView):
-    models = Entidade
     template_name = 'index.html'
-    queryset = Entidade.objects.all()
-    context_object_name = 'entidades'
+    model = Entidade
+    paginate_by = 4
+    ordering = 'nome'
 
 
 class CreateEntidadeView(CreateView):
