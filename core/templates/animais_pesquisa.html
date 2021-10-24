@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{%  load humanize %}
+{% block content %}
+    <div class="row">
+        <form method = "get" action = "" >
+        {% csrf_token %}
+        pesquisa: <input name = "src" type = "text" placeholder = "Pesquise ..." value = "" >
+        </form>
+        <!-- Team Section Start -->
+        <section id="team" class="section-padding bg-gray">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="section-header text-center">
+                    <div class="shape wow fadeInDown" data-wow-delay="0.3s"></div>
+                </div>
+
+                {% for a in page_obj %}
+                    <div class="card h-100">
+                        <div class="row gx-4 gx-lg-5 align-items-center">
+                            <!-- Team Item Starts -->
+                            <div class="col-md-6 div-img">
+                                <img class="card-img-top mb-5 mb-md-0" src="{{ a.imagem_small }}" alt="{{ a.nome }}">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="info-text">
+                                    <h3>{{ a.nome }}</h3>
+                                    <p><b>Raça: </b>{{ a.raca }}</p>
+                                    <p><b>Idade: </b>{{ a.idade }}</p>
+                                    <p><b>Entidade: </b>{{ a.entidade.nome }}</p>
+                                </div>
+                                <b><u>Contatos:</u></b>
+                                <ul class="social-icons">
+                                    <li><b>E-mail: </b>{{ a.entidade.email }}</li>
+                                    <li><b>Site: </b>{{ a.entidade.site }}</li>
+                                    <li><b>Fone: </b>{{ a.entidade.fone }}</li>
+                                </ul>
+                            </div>
+                            <!-- Team Item Ends -->
+                        </div>
+                    </div>
+                    <p></p>
+                {% endfor %}
+
+            </div>
+
+            {% include 'paginacao.html' %}
+        </section>
+        <!-- Team Section End -->
+    </div>
+{% endblock %}

@@ -66,7 +66,7 @@ class Animal(Base):
     idade = models.IntegerField('Idade')
     raca = models.ForeignKey('Raca', on_delete=models.RESTRICT)
     entidade = models.ForeignKey('Entidade', on_delete=models.RESTRICT)
-    imagem = StdImageField('Imagem', upload_to=get_file_path, variations={'large': (480, 480)}, delete_orphans=True)
+    imagem = StdImageField('Imagem', upload_to=get_file_path, variations={'small': (450, 400)}, delete_orphans=True)
 
     class Meta:
         verbose_name = 'Animal'
@@ -74,3 +74,10 @@ class Animal(Base):
 
     def __str__(self):
         return self.nome
+
+    @property
+    def imagem_small(self):
+        print(self.imagem.url)
+        img = self.imagem.url.split('.')
+        return img[0] + '.small.' + img[1]
+

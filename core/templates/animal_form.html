@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
 {% block content %}
-    <h3>Entidades</h3>
-    <form method="post">
+    <h3>Animais</h3>
+    <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {% bootstrap_form form %}
         {% buttons %}
             <button type="submit" class="btn btn-primary">Salvar</button>
             <button type="button" class="btn btn-warning">
-                <a href="{% url 'entidades' %}">Cancelar</a>
+                <a href="{% url 'animais' %}">Cancelar</a>
             </button>
         {% endbuttons %}
     </form>

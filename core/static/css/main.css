@@ -1,0 +1,15 @@
+.wrapper {
+    flex-direction: row;
+}
+
+.div-img {
+    padding: 0px !important;
+}
+.box1 {
+    flex-direction: column;
+}
+
+.box2 {
+    flex-direction: column;
+}
+

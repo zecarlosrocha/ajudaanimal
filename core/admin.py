@@ -20,4 +20,5 @@ class RacaAdmin(admin.ModelAdmin):
 
 @admin.register(Animal)
 class AnimalAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'raca', 'entidade', 'imagem', 'ativo')
+    list_display = ('nome', 'raca', 'entidade', 'imagem', 'imagem_small', 'ativo', 'entidade')
+    search_fields = ['nome', 'raca', 'entidade', 'ativo', 'entidade__nome']
