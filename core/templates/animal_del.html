@@ -1,14 +1,31 @@
 {% extends 'base.html' %}
+{%  load humanize %}
 {% load bootstrap4 %}
 {% block content %}
-    <form method="post">
-        {% csrf_token %}
-        <p>Tem certeza que deseja excluir o animal "{{ object }}"?</p>
-    {% buttons %}
-            <button type="submit" class="btn btn-danger">Confirmar</button>
-            <button type="button" class="btn btn-warning">
-                <a href="{% url 'animais' %}">Cancelar</a>
-            </button>
-    {% endbuttons %}
-    </form>
+    <header class="masthead2">
+        <div class="container">
+            <!-- Contato Section Heading-->
+            <h2 class="page-section-heading text-uppercase text-secondary mb-0 text-center">Cadastro de animais</h2>
+            <!-- Icon Divider-->
+            <div class="divider-custom">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-xl-7">
+                    <form method="post">
+                        {% csrf_token %}
+                        <p>Tem certeza que deseja excluir o animal "{{ object }}"?</p>
+                        {% buttons %}
+                            <button type="submit" class="btn btn-danger">Confirmar</button>
+                            <button type="button" class="btn btn-warning">
+                                <a href="{% url 'animais' %}">Cancelar</a>
+                            </button>
+                        {% endbuttons %}
+                    </form>
+				</div>
+			</div>
+        </div>
+    </header>
 {% endblock %}

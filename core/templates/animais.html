@@ -1,46 +1,50 @@
 {% extends 'base.html' %}
 {%  load humanize %}
 {% block content %}
-    <div class="row">
-        <h3>Animais</h3>
-        <section id="team" class="section-padding bg-gray">
-            <div class="container px-4 px-lg-5 my-5">
-                <div class="section-header text-center">
-                    <div class="shape wow fadeInDown" data-wow-delay="0.3s"></div>
-                </div>
-                {% for a in page_obj %}
-                    <div class="card h-100">
-                        <div class="row gx-4 gx-lg-5 align-items-center">
-                            <!-- Team Item Starts -->
-                            <div class="col-md-6 div-img">
-                                <img class="card-img-top mb-5 mb-md-0" src="{{ a.imagem_small }}" alt="{{ a.nome }}">
-                            </div>
-                            <div class="col-md-6">
-                                <div class="d-flex justify-content-end mb-4">
-                                    <a class="btn btn-warning" href="{% url 'upd_animal' a.pk %}">Editar</a>
-                                    <a class="btn btn-danger" href="{% url 'del_animal' a.pk %}">Deletar</a>
-                                </div>
-                                <div class="info-text">
-                                    <h3>{{ a.nome }}</h3>
-                                    <p><b>Raça: </b>{{ a.raca }}</p>
-                                    <p><b>Idade: </b>{{ a.idade }}</p>
-                                    <p><b>Entidade: </b>{{ a.entidade.nome }}</p>
-                                </div>
-                                <b><u>Contatos:</u></b>
-                                <ul class="social-icons">
-                                    <li><b>E-mail: </b>{{ a.entidade.email }}</li>
-                                    <li><b>Site: </b>{{ a.entidade.site }}</li>
-                                    <li><b>Fone: </b>{{ a.entidade.fone }}</li>
-                                </ul>
-                            </div>
-                            <!-- Team Item Ends -->
+    <!-- Team Section Start -->
+
+
+    <header class="masthead2">
+        <h2 class="page-section-heading text-uppercase mb-0 text-secondary text-center">Lista de animais</h2>
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+
+        <a  href="{% url 'add_animal' %}" class="float">
+            <i class="fa fa-plus my-float"></i>
+        </a>
+
+        <div class="d-flex align-items-center flex-column">
+            {% for a in page_obj %}
+                <div class="rowlist row g-0"  {% if forloop.counter|divisibleby:"2" %} {% else %} style="background-color: lightgray" {% endif %} >
+                    <!-- Team Item Starts -->
+                    <div class="col-md-6 showcase-img">
+                        <img class="cover" src="{{ a.imagem_small }}" alt="{{ a.nome }}">
+                    </div>
+                    <div class="text-center masthead-subheading div-img col-lg-6 order-lg-1 my-auto showcase-text">
+                        <div class="d-flex justify-content-end mb-4">
+                            <a class="btn btn-warning rounded-circle" style="box-shadow: 2px 2px 3px #999; width: 60px; height: 60px; padding: 15px" href="{% url 'upd_animal' a.pk %}"><b>&checkmark;</b></a>
+                            <a class="btn btn-danger rounded-circle"  style="box-shadow: 2px 2px 3px #999; width: 60px; height: 60px; padding: 15px" href="{% url 'del_animal' a.pk %}"><b>&cross;</b></a>
+                        </div>
+                        <div class="text-center masthead-subheading div-img col-lg-6 order-lg-1 my-auto showcase-text">
+                            <h3>{{ a.nome }}</h3>
+                            <p><b>Raça: </b>{{ a.raca }}</p>
+                            <p><b>Idade: </b>{{ a.idade }}</p>
+                            <p><b>Entidade: </b>{{ a.entidade.nome }}</p>
+                            <p><b>Cidade: </b>{{ a.entidade.cidade }}-{{ a.entidade.uf }}</p>
+                            <b><u>Contatos:</u></b>
+                                <br /><b>E-mail: </b>{{ a.entidade.email }}
+                                <br /><b>Site: </b>{{ a.entidade.site }}
+                                <br /><b>Fone: </b>{{ a.entidade.fone }}
                         </div>
                     </div>
-                    <p></p>
-                {% endfor %}
-            </div>
-            {% include 'paginacao.html' %}
-        </section>
-    </div>
-
+                    <!-- Team Item Ends -->
+                </div>
+            {% endfor %}
+        </div>
+        {% include 'paginacao.html' %}
+    </header>
+    <!-- Team Section End -->
 {% endblock %}

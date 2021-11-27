@@ -1,5 +1,48 @@
 {% extends 'base.html' %}
 {%  load humanize %}
 {% block content %}
-    <h3>Index</h3>
+    <!-- Masthead-->
+    <header class="masthead bg-primary text-white text-center">
+        <div class="container d-flex align-items-center flex-column">
+            <!-- Masthead Avatar Image-->
+            <img class="masthead-avatar mb-4" src="../static/assets/img/dog.png" alt="..." />
+            <!-- Masthead Heading src="assets/img/portfolio/cabin.png" -->
+            <h1 class="masthead-heading text-uppercase mb-0">Ajuda Animal</h1>
+            <!-- Icon Divider-->
+            <div class="divider-custom divider-light">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
+            </div>
+            <!-- Masthead Subheading-->
+            <p class="masthead-subheading font-weight-light mb-0">Contribua - Adote - Respeite</p>
+        </div>
+    </header>
+    <!-- Sobre Section-->
+    <section class="page-section portfolio" id="sobre">
+        <div class="container">
+
+            <!-- Time Section Heading-->
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Sobre</h2>
+            <!-- Icon Divider-->
+            <div class="divider-custom">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
+            </div>
+
+            <!-- Sobre Section Content-->
+            <div class="row">
+                <div class="col-lg-4 ms-auto">
+                    <p class="lead">Este site foi concebido com o objetivo principal de ser um canal de comunicação entre doadores e adotantes. </p>
+                    <p class="lead">Doar um cão ou um gato é uma ação que envolve responsabilidade e riscos. A responsabilidade fica por conta de quem doa e é claro que queremos o melhor para o animal que estamos doando, por isso precisamos ter o máximo de cuidados e avaliar bem o candidato a adotante, antes de decidir doar. </p>
+                </div>
+                <div class="col-lg-4 me-auto">
+                    <p class="lead">Aconselhamos que o doador seja criterioso na avaliação do canditato a adotante para que o animal em questão seja tratado da melhor maneira possível. </p>
+                    <p class="lead">Do lado do adotante, é importante a avaliação do animal a ser adotado tendo em conta o fato que o animalzinho passará a ser mais um membro da família e, como tal, deverá ser tratado.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}
+

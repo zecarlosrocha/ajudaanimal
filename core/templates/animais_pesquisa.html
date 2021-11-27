@@ -1,49 +1,50 @@
 {% extends 'base.html' %}
 {%  load humanize %}
 {% block content %}
-    <div class="row">
+    <!-- Team Section Start -->
+    <header class="masthead2 bg-primary text-white">
+        <h2 class="page-section-heading text-uppercase mb-0 text-center">Lista de adoção</h2>
+        <!-- Icon Divider-->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+
         <form method = "get" action = "" >
-        {% csrf_token %}
-        pesquisa: <input name = "src" type = "text" placeholder = "Pesquise ..." value = "" >
-        </form>
-        <!-- Team Section Start -->
-        <section id="team" class="section-padding bg-gray">
-            <div class="container px-4 px-lg-5 my-5">
-                <div class="section-header text-center">
-                    <div class="shape wow fadeInDown" data-wow-delay="0.3s"></div>
-                </div>
-
-                {% for a in page_obj %}
-                    <div class="card h-100">
-                        <div class="row gx-4 gx-lg-5 align-items-center">
-                            <!-- Team Item Starts -->
-                            <div class="col-md-6 div-img">
-                                <img class="card-img-top mb-5 mb-md-0" src="{{ a.imagem_small }}" alt="{{ a.nome }}">
-                            </div>
-                            <div class="col-md-6">
-                                <div class="info-text">
-                                    <h3>{{ a.nome }}</h3>
-                                    <p><b>Raça: </b>{{ a.raca }}</p>
-                                    <p><b>Idade: </b>{{ a.idade }}</p>
-                                    <p><b>Entidade: </b>{{ a.entidade.nome }}</p>
-                                </div>
-                                <b><u>Contatos:</u></b>
-                                <ul class="social-icons">
-                                    <li><b>E-mail: </b>{{ a.entidade.email }}</li>
-                                    <li><b>Site: </b>{{ a.entidade.site }}</li>
-                                    <li><b>Fone: </b>{{ a.entidade.fone }}</li>
-                                </ul>
-                            </div>
-                            <!-- Team Item Ends -->
-                        </div>
+            <div class="rowlist row g-0">
+                {% csrf_token %}
+                    <div class="col-lg-6 order-lg-2"></div>
+                    <div class="col-lg-4 order-lg-2">
+                      <input class="form-control" name="src" type="text" placeholder="Digite sua pesquisa aqui. Apenas uma palavra que pode ser uma raça, cidade ou entidade..." value = "" >
+                     </div>
+                    <div class="col-lg-1 order-lg-2">
+                       <button type="submit" class="btn btn-warning">Pesquisar</button></span>
                     </div>
-                    <p></p>
-                {% endfor %}
+           </div>
+        </form>
 
-            </div>
-
-            {% include 'paginacao.html' %}
-        </section>
-        <!-- Team Section End -->
-    </div>
+        <div class="d-flex align-items-center flex-column">
+            {% for a in page_obj %}
+                <div class="rowlist row g-0">
+                    <div class="col-lg-6 {% if forloop.counter|divisibleby:"2" %} order-lg-2 {% endif %} text-white showcase-img">
+                        <img class="cover" src="{{ a.imagem_small }}" alt="{{ a.nome }}">
+                    </div>
+                    <div class="text-center masthead-subheading div-img col-lg-6 order-lg-1 my-auto showcase-text">
+                        <h3>{{ a.nome }}</h3>
+                        <p><b>Raça: </b>{{ a.raca }}</p>
+                        <p><b>Idade: </b>{{ a.idade }}</p>
+                        <p><b>Entidade: </b>{{ a.entidade.nome }}</p>
+                        <p><b>Cidade: </b>{{ a.entidade.cidade }}-{{ a.entidade.uf }}</p>
+                        <b><u>Contatos:</u></b>
+                            <br /><b>E-mail: </b> {% if a.entidade.email and a.entidade.email.trip %} Não informado {% else %} {{ a.entidade.email }} {% endif %}
+                            <br /><b>Site: </b> {% if a.entidade.site and a.entidade.site.trip %} Não informado {% else %} {{ a.entidade.site }} {% endif %}
+                            <br /><b>Fone: </b> {% if a.entidade.fone and a.entidade.fone.trip %} Não informado {% else %} {{ a.entidade.fone }} {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        {% include 'paginacao.html' %}
+    </header>
+    <!-- Team Section End -->
 {% endblock %}

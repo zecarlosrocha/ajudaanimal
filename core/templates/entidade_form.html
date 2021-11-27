@@ -1,15 +1,37 @@
 {% extends 'base.html' %}
+{%  load humanize %}
 {% load bootstrap4 %}
 {% block content %}
-    <h3>Entidades</h3>
-    <form method="post">
-    {% csrf_token %}
-    {% bootstrap_form form %}
-        {% buttons %}
-            <button type="submit" class="btn btn-primary">Salvar</button>
-            <button type="button" class="btn btn-warning">
-                <a href="{% url 'entidades' %}">Cancelar</a>
-            </button>
-        {% endbuttons %}
-    </form>
+    <header class="masthead2">
+        <div class="container">
+            <h2 class="page-section-heading text-uppercase text-secondary mb-0 text-center">Cadastro de entidade</h2>
+            <!-- Icon Divider-->
+            <div class="divider-custom">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-xl-7">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% bootstrap_form form %}
+                        {% buttons %}
+                            <br />
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                            <button type="button" class="btn btn-warning">
+                                <a href="{% url 'index' %}">Cancelar</a>
+                            </button>
+                        {% if user.is_anonymous %}
+                        {% else %}
+                            <button type="button" class="btn btn-danger">
+                                <a href="{% url 'del_entidade' user.id %}">Excluir</a>
+                            </button>
+                        {% endif %}
+                        {% endbuttons %}
+					</form>
+				</div>
+			</div>
+        </div>
+    </header>
 {% endblock %}
